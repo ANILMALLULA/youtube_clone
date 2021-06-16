@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Container } from "react-bootstrap";
+import Header from "./components/header/Header";
+import SideBar from "./components/sidebar/SiderBar";
+import Home from "./screens/home/Home";
+import "./_app.scss";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <div className='app__container border border-info'>
+        <SideBar />
+        <Container fluid className='app__main border border-warning'>
+          <Home />
+        </Container>
+      </div>
+    </>
   );
 }
 
