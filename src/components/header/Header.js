@@ -6,12 +6,16 @@ import { MdApps } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
 import { MdNotifications } from "react-icons/md";
 
-const Header = () => {
+const Header = ({ handleSidebar }) => {
   return (
     <div className='border border-dark header'>
-      <FaBars className='header__menu' size={26} />
+      <FaBars
+        className='header__menu'
+        size={26}
+        onClick={() => handleSidebar()}
+      />
       <img
-        src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/2560px-YouTube_Logo_2017.svg.png'
+        src='https://clipart.info/images/ccovers/1590430652red-youtube-logo-png-xl.png'
         alt=''
         className='header__logo'
       />
