@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import Video from "../../components/video/Video";
 import CategoriesBar from "../../components/categoriesBar/CategoriesBar";
 
