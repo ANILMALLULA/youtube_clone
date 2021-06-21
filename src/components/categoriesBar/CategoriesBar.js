@@ -1,32 +1,42 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  getPopularVideos,
+  getVideosbyCategories,
+} from "../../redux/actions/videosActions";
 import "./_categories.scss";
 
 const keywords = [
   "All",
-  "React Js",
-  "Angulat Js",
+  "React js",
+  "Angular js",
+  "React Native",
   "use of API",
   "Redux",
   "Music",
-  "Algorithm Art",
-  "use of API",
-  "Redux",
-  "Music",
-  "Algorithm Art",
-  "use of API",
-  "Redux",
-  "Music",
-  "Algorithm Art",
-  "use of API",
-  "Redux",
-  "Music",
-  "Algorithm Art",
+  "Algorithm Art ",
+  "Guitar",
+  "Telugu Songs",
+  "Coding",
+  "Cricket",
+  "Football",
+  "Interview Preparation",
+  "Gatsby",
+  "Namaste Javascript",
+  "Firebase",
 ];
 const CategoriesBar = () => {
   const [activeEl, setActiveEl] = useState("All");
 
+  const dispatch = useDispatch();
+
   const handleClick = (value) => {
     setActiveEl(value);
+    if (value === "All") {
+      dispatch(getPopularVideos());
+    } else {
+      dispatch(getVideosbyCategories(value));
+    }
   };
 
   return (

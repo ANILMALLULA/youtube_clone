@@ -5,6 +5,7 @@ import SideBar from "./components/sidebar/SiderBar";
 import Home from "./screens/home/Home";
 import "./_app.scss";
 import Login from "./screens/login/Login";
+import WatchScreen from "./screens/watchScreen/WatchScreen";
 
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -22,7 +23,7 @@ const Layout = ({ children }) => {
       <Header handleSidebar={handleSidebar} />
       <div className='app__container'>
         <SideBar sidebar={sidebar} handleSidebar={handleSidebar} />
-        <Container fluid className='app__main'>
+        <Container fluid className='app__main mt-3'>
           {children}
         </Container>
       </div>
@@ -54,6 +55,13 @@ function App() {
           <h1>Search results</h1>
         </Layout>
       </Route>
+
+      <Route exact path={"/watch/:id"}>
+        <Layout>
+          <WatchScreen />
+        </Layout>
+      </Route>
+
       <Route>
         <Redirect to='/' />
       </Route>

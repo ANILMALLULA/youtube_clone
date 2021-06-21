@@ -7,7 +7,7 @@ const firebaseConfig = {
   projectId: "ytclone-by-anil",
   storageBucket: "ytclone-by-anil.appspot.com",
   messagingSenderId: "662004472904",
-  appId: "1:662004472904:web:5720d6ef0449dfbf94cc7d",
+  appId: "1:662004472904:web:5720d6ef0449dfbf94cc7d"
 };
 
 firebase.initializeApp(firebaseConfig);
