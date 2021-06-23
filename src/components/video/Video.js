@@ -67,7 +67,7 @@ const Video = ({ video }) => {
   };
 
   return (
-    <div className='video' onClick={videoClickHandler()}>
+    <div className='video' onClick={videoClickHandler}>
       <div className='video__top'>
         {/* <img src={medium.url} alt='' /> */}
         <LazyLoadImage src={medium.url} effect='blur' />
