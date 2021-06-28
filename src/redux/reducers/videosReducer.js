@@ -2,9 +2,15 @@ import {
   HOME_VIDEOS_FAIL,
   HOME_VIDEOS_REQUEST,
   HOME_VIDEOS_SUCCESS,
+  RELATED_VIDEOS_FAIL,
+  RELATED_VIDEOS_REQUEST,
+  RELATED_VIDEOS_SUCCESS,
   SELECTED_VIDEO_FAIL,
   SELECTED_VIDEO_REQUEST,
   SELECTED_VIDEO_SUCCESS,
+  SEARCHED_VIDEOS_FAIL,
+  SEARCHED_VIDEOS_SUCCESS,
+  SEARCHED_VIDEOS_REQUEST,
 } from "../actionTypes";
 
 const initialState = {
@@ -69,7 +75,7 @@ export const selectedVideoReducer = (state = initialVideoState, action) => {
     case SELECTED_VIDEO_FAIL:
       return {
         ...state,
-        video: null,
+
         loading: false,
         error: payload,
       };
@@ -78,3 +84,71 @@ export const selectedVideoReducer = (state = initialVideoState, action) => {
       return state;
   }
 };
+
+const initialRelatedVideosState = {
+  loading: true,
+  videos: [],
+  error: "",
+};
+
+export const relatedVideosReducer = (state = initialRelatedVideosState,action) => {
+  const { payload, type } = action;
+
+  switch (type) {
+    case RELATED_VIDEOS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case RELATED_VIDEOS_SUCCESS:
+      return {
+        ...state,
+        videos: payload,
+        loading: false,
+      };
+    case RELATED_VIDEOS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+
+const searchVideosState = {
+  loading: true,
+  videos: [],
+  error: "",
+};
+
+export const searchVideosReducer = (state = searchVideosState,action) => {
+  const { payload, type } = action;
+
+  switch (type) {
+    case SEARCHED_VIDEOS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SEARCHED_VIDEOS_SUCCESS:
+      return {
+        ...state,
+        videos: payload,
+        loading: false,
+      };
+    case SEARCHED_VIDEOS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: payload,
+      };
+
+    default:
+      return state;
+  }
+};
+

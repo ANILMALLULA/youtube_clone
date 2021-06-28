@@ -6,15 +6,24 @@ import WatchScreenHorVids from "../../components/watchScreen_Hor_Vids/WatchScree
 import Comments from "../../components/comments/Comments";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideosById } from "../../redux/actions/videosActions";
+import {
+  getRelatedVideos,
+  getVideosById,
+} from "../../redux/actions/videosActions";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const WatchScreen = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
 
+  const { videos, loading: relatedVideosLoading } = useSelector(
+    (state) => state.relatedVideos
+  );
+
   useEffect(() => {
     dispatch(getVideosById(id));
+    dispatch(getRelatedVideos(id));
   }, [dispatch, id]);
 
   const { video, loading } = useSelector((state) => state.selectedVideo);
@@ -38,12 +47,23 @@ const WatchScreen = () => {
           <h4>Loading...</h4>
         )}
 
-        <Comments />
+        <Comments
+          videoId={id}
+          totalComments={video?.statistics?.commentCount}
+        />
       </Col>
       <Col lg={4}>
-        {[...Array(10)].map(() => (
-          <WatchScreenHorVids />
-        ))}
+        {!relatedVideosLoading ? (
+          videos
+            ?.filter((video) => video.snippet)
+            .map((video) => (
+              <WatchScreenHorVids video={video} kety={video.id.videoId} />
+            ))
+        ) : (
+          <SkeletonTheme color='#343a40' highlightColor='#3c4147'>
+            <Skeleton width='100%' height='130px' count={15} />
+          </SkeletonTheme>
+        )}
       </Col>
     </Row>
   );

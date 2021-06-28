@@ -2,9 +2,15 @@ import {
   HOME_VIDEOS_FAIL,
   HOME_VIDEOS_REQUEST,
   HOME_VIDEOS_SUCCESS,
+  RELATED_VIDEOS_FAIL,
+  RELATED_VIDEOS_REQUEST,
+  RELATED_VIDEOS_SUCCESS,
   SELECTED_VIDEO_FAIL,
   SELECTED_VIDEO_REQUEST,
   SELECTED_VIDEO_SUCCESS,
+  SEARCHED_VIDEOS_REQUEST
+  ,
+  SEARCHED_VIDEOS_SUCCESS
 } from "../actionTypes";
 import request from "../../api";
 
@@ -98,6 +104,65 @@ export const getVideosById = (id) => {
       console.log(error.message);
       dispatch({
         type: SELECTED_VIDEO_FAIL,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const getRelatedVideos = (id) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: RELATED_VIDEOS_REQUEST,
+      });
+      const { data } = await request("/search", {
+        params: {
+          part: "snippet",
+          relatedToVideoId: id,
+          maxResults: 15,
+          type: "video",
+        },
+      });
+      dispatch({
+        type: RELATED_VIDEOS_SUCCESS,
+        payload: data.items,
+      });
+    } catch (error) {
+      console.log(error.response.data.message);
+      dispatch({
+        type: RELATED_VIDEOS_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
+};
+
+
+export const getVideosbySearchInput = (keyword) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: SEARCHED_VIDEOS_REQUEST,
+      });
+
+      const { data } = await request.get("/search", {
+        params: {
+          part: "snippet",
+          maxResults: 20,
+          q: keyword,
+          type: "video,channel"
+        },
+      });
+
+      dispatch({
+        type: SEARCHED_VIDEOS_SUCCESS,
+        payload: data.items,
+      });
+    } catch (error) {
+      console.log(error.message);
+      dispatch({
+        type: HOME_VIDEOS_FAIL,
         payload: error.message,
       });
     }
