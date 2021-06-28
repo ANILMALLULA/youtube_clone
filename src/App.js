@@ -11,6 +11,7 @@ import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import SearchScreen from "./screens/searchScreen/SearchScreen";
+import Subscriptions from "./screens/subscriptions/Subscriptions";
 
 const Layout = ({ children }) => {
   const [sidebar, setSidebar] = useState(false);
@@ -37,7 +38,6 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
-    document.title = "My Youtube";
     if (!loading && !accessToken) {
       history.push("/login");
     }
@@ -62,6 +62,16 @@ function App() {
         <Layout>
           <WatchScreen />
         </Layout>
+      </Route>
+
+      <Route exact path={"/feed/subscriptions"}>
+        <Layout>
+          <Subscriptions />
+        </Layout>
+      </Route>
+
+      <Route exact path={"/channel/:channelId"}>
+        <Layout>Channel screen</Layout>
       </Route>
 
       <Route>

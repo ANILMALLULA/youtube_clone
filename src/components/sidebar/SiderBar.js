@@ -12,6 +12,7 @@ import {
 } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../redux/actions/authActions";
+import { Link } from "react-router-dom";
 
 const SiderBar = ({ sidebar, handleSidebar }) => {
   const dispatch = useDispatch();
@@ -28,10 +29,12 @@ const SiderBar = ({ sidebar, handleSidebar }) => {
         <MdHome size={23} />
         <span>Home</span>
       </li>
-      <li>
-        <MdSubscriptions size={23} />
-        <span>Subscriptions</span>
-      </li>
+      <Link to='/feed/subscriptions'>
+        <li>
+          <MdSubscriptions size={23} />
+          <span>Subscriptions</span>
+        </li>
+      </Link>
       <li>
         <MdThumbUp size={23} />
         <span>Liked Videos</span>

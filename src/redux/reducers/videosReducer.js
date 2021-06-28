@@ -11,6 +11,9 @@ import {
   SEARCHED_VIDEOS_FAIL,
   SEARCHED_VIDEOS_SUCCESS,
   SEARCHED_VIDEOS_REQUEST,
+  SUBSCRIPTION_CHANNEL_REQUEST,
+  SUBSCRIPTION_CHANNEL_FAIL,
+  SUBSCRIPTION_CHANNEL_SUCCESS,
 } from "../actionTypes";
 
 const initialState = {
@@ -91,7 +94,10 @@ const initialRelatedVideosState = {
   error: "",
 };
 
-export const relatedVideosReducer = (state = initialRelatedVideosState,action) => {
+export const relatedVideosReducer = (
+  state = initialRelatedVideosState,
+  action
+) => {
   const { payload, type } = action;
 
   switch (type) {
@@ -118,14 +124,13 @@ export const relatedVideosReducer = (state = initialRelatedVideosState,action) =
   }
 };
 
-
 const searchVideosState = {
   loading: true,
   videos: [],
   error: "",
 };
 
-export const searchVideosReducer = (state = searchVideosState,action) => {
+export const searchVideosReducer = (state = searchVideosState, action) => {
   const { payload, type } = action;
 
   switch (type) {
@@ -152,3 +157,38 @@ export const searchVideosReducer = (state = searchVideosState,action) => {
   }
 };
 
+const subscriptionsChannelState = {
+  loading: true,
+  videos: [],
+  error: "",
+};
+
+export const subscriptionsChannelReducer = (
+  state = subscriptionsChannelState,
+  action
+) => {
+  const { payload, type } = action;
+
+  switch (type) {
+    case SUBSCRIPTION_CHANNEL_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SUBSCRIPTION_CHANNEL_SUCCESS:
+      return {
+        ...state,
+        videos: payload,
+        loading: false,
+      };
+    case SUBSCRIPTION_CHANNEL_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: payload,
+      };
+
+    default:
+      return state;
+  }
+};

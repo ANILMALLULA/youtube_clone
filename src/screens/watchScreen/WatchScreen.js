@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./_watchScreen.scss";
+import "./watchScreen.scss";
 import { Row, Col } from "react-bootstrap";
 import VideoMetaData from "../../components/videoMetaData/VideoMetaData";
 import WatchScreenHorVids from "../../components/watchScreen_Hor_Vids/WatchScreen_Hor_Vids";

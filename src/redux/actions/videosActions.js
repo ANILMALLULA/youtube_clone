@@ -8,9 +8,11 @@ import {
   SELECTED_VIDEO_FAIL,
   SELECTED_VIDEO_REQUEST,
   SELECTED_VIDEO_SUCCESS,
-  SEARCHED_VIDEOS_REQUEST
-  ,
-  SEARCHED_VIDEOS_SUCCESS
+  SEARCHED_VIDEOS_REQUEST,
+  SEARCHED_VIDEOS_SUCCESS,
+  SUBSCRIPTION_CHANNEL_REQUEST,
+  SUBSCRIPTION_CHANNEL_SUCCESS,
+  SUBSCRIPTION_CHANNEL_FAIL,
 } from "../actionTypes";
 import request from "../../api";
 
@@ -138,7 +140,6 @@ export const getRelatedVideos = (id) => {
   };
 };
 
-
 export const getVideosbySearchInput = (keyword) => {
   return async (dispatch) => {
     try {
@@ -151,7 +152,7 @@ export const getVideosbySearchInput = (keyword) => {
           part: "snippet",
           maxResults: 20,
           q: keyword,
-          type: "video,channel"
+          type: "video,channel",
         },
       });
 
@@ -167,4 +168,32 @@ export const getVideosbySearchInput = (keyword) => {
       });
     }
   };
+};
+
+export const getSubscribedChannels = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: SUBSCRIPTION_CHANNEL_REQUEST,
+    });
+    const { data } = await request("/subscriptions", {
+      params: {
+        part: "snippet,contentDetails",
+
+        mine: true,
+      },
+      headers: {
+        Authorization: `Bearer ${getState().auth.accessToken}`,
+      },
+    });
+    dispatch({
+      type: SUBSCRIPTION_CHANNEL_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    console.log(error.response.data);
+    dispatch({
+      type: SUBSCRIPTION_CHANNEL_FAIL,
+      payload: error.response.data,
+    });
+  }
 };
