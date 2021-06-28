@@ -6,6 +6,7 @@ import Home from "./screens/home/Home";
 import "./_app.scss";
 import Login from "./screens/login/Login";
 import WatchScreen from "./screens/watchScreen/WatchScreen";
+import ChannelScreen from "./screens/channelScreen/ChannelScreen";
 
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -71,7 +72,9 @@ function App() {
       </Route>
 
       <Route exact path={"/channel/:channelId"}>
-        <Layout>Channel screen</Layout>
+        <Layout>
+          <ChannelScreen />
+        </Layout>
       </Route>
 
       <Route>
