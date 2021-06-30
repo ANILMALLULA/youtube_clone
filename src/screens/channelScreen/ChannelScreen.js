@@ -52,13 +52,13 @@ const ChannelScreen = () => {
                   <Video video={video} key={video.id} channelScreen />
                 </Col>
               ))
-            : [...Array(15)].map(() => {
+            : [...Array(15)].map(() => (
                 <Col md={4} lg={3}>
                   <SkeletonTheme color='#343a40' highlightColor='#3c4147'>
                     <Skeleton width='100%' height='160px' count={20} />
                   </SkeletonTheme>
-                </Col>;
-              })}
+                </Col>
+            ))}
         </Row>
       </Container>
     </>

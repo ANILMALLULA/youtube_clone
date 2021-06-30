@@ -6,6 +6,7 @@ import WatchScreenHorVids from "../../components/watchScreen_Hor_Vids/WatchScree
 import Comments from "../../components/comments/Comments";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 import {
   getRelatedVideos,
   getVideosById,
@@ -30,6 +31,10 @@ const WatchScreen = () => {
 
   return (
     <Row>
+      <Helmet>
+        <title>{video?.snippet?.title}</title>
+      </Helmet>
+
       <Col lg={8}>
         <div className='watchScreen__player'>
           <iframe

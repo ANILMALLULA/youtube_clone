@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideosbySearchInput } from "../../redux/actions/videosActions";
 import { Container } from "react-bootstrap";
-import WatchScreen_Hor_Vids from "../../components/watchScreen_Hor_Vids/WatchScreen_Hor_Vids";
+import WATCHSCREEN_HOR_VIDS from "../../components/watchScreen_Hor_Vids/WatchScreen_Hor_Vids";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const SearchScreen = () => {
@@ -21,7 +21,7 @@ const SearchScreen = () => {
     <Container>
       {!loading ? (
         videos?.map((video) => (
-          <WatchScreen_Hor_Vids
+          <WATCHSCREEN_HOR_VIDS
             video={video}
             key={video.id.videoId}
             searchScreen

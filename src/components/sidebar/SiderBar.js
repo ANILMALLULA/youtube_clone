@@ -26,18 +26,17 @@ const SiderBar = ({ sidebar, handleSidebar }) => {
       onClick={() => handleSidebar()}
     >
       <Link to='/'>
-        <li>
-          <MdHome size={23} />
-          <span>Home</span>
-        </li>
-      </Link>
-
-      <Link to='/feed/subscriptions'>
-        <li>
-          <MdSubscriptions size={23} />
-          <span>Subscriptions</span>
-        </li>
-      </Link>
+            <li>
+               <MdHome size={23} />
+               <span>Home</span>
+            </li>
+         </Link>
+         <Link to='/feed/subscriptions'>
+            <li>
+               <MdSubscriptions size={23} />
+               <span>Subscriptions</span>
+            </li>
+         </Link>
       <li>
         <MdThumbUp size={23} />
         <span>Liked Videos</span>

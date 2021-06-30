@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
       <Header handleSidebar={handleSidebar} />
       <div className='app__container'>
         <SideBar sidebar={sidebar} handleSidebar={handleSidebar} />
-        <Container fluid className='app__main mt-3'>
+        <Container fluid className='app__main'>
           {children}
         </Container>
       </div>

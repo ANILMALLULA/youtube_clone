@@ -31,13 +31,15 @@ const Comments = ({ videoId, totalComments }) => {
     setInpVal("");
   };
 
+  const user = useSelector((state) => state.auth?.user);
+
   return (
     <div className='comments'>
       <p>{totalComments} comments</p>
       <div className='comments__form d-flex w-100 my-2'>
         <img
-          src='https://www.w3schools.com/howto/img_avatar.png'
-          alt='avatar_img'
+          src={user?.photo}
+          alt='avatar'
           className='rounded-circle mx-3'
         />
         <form

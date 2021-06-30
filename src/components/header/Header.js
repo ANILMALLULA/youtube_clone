@@ -6,6 +6,7 @@ import { MdApps } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
 import { MdNotifications } from "react-icons/md";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = ({ handleSidebar }) => {
   const [inpVal, setInpVal] = useState("");
@@ -15,9 +16,10 @@ const Header = ({ handleSidebar }) => {
     e.preventDefault();
     history.push(`/search/${inpVal}`);
   };
+  const user = useSelector((state) => state.auth?.user);
 
   return (
-    <div className='border border-dark header'>
+    <div className='header'>
       <FaBars
         className='header__menu'
         size={26}
@@ -30,7 +32,7 @@ const Header = ({ handleSidebar }) => {
       />
       <form onSubmit={submitHandler}>
         <input
-          type='search'
+          type='text'
           placeholder='Search here'
           value={inpVal}
           onChange={(e) => setInpVal(e.target.value)}
@@ -42,10 +44,7 @@ const Header = ({ handleSidebar }) => {
       <div className='header__icons'>
         <MdNotifications size={28} />
         <MdApps size={28} />
-        <img
-          src='https://www.w3schools.com/howto/img_avatar.png'
-          alt='avatar_img'
-        />
+        <img src={user?.photo} alt='avatar' />
       </div>
     </div>
   );
